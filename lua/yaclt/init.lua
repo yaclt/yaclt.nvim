@@ -14,7 +14,7 @@ function M.yacltNew(args)
   local commandString = M.config.cmd
   if args ~= nil then
     for arg in args do
-      commandString += ' ' .. arg
+      commandString = commandString .. ' ' .. arg
     end
   end
   local process = io.popen(M.config.cmd)
