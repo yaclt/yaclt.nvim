@@ -5,14 +5,14 @@ M.config = {
 }
 
 function M.setup(config)
-  if config != nil and config.cmd != nil then
+  if config ~= nil and config.cmd ~= nil then
     M.config.cmd = config.cmd
   end
 end
 
 function M.yacltNew(args)
   local commandString = M.config.cmd
-  if args != nil then
+  if args ~= nil then
     for arg in args do
       commandString += ' ' .. arg
     end
