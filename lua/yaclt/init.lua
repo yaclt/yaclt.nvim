@@ -19,9 +19,10 @@ function M.yacltNew(args)
   end
   local process = io.popen(M.config.cmd)
   local stdoutLines = process:lines()
-  assert(process.close() == 0) -- assert command executed successfully
-  local filepath = stdoutLines[0]
-  vim.api.nvim_command('edit ' .. filepath)
+  print(stdoutLines)
+  -- assert(process.close() == 0) -- assert command executed successfully
+  -- local filepath = stdoutLines[0]
+  -- vim.api.nvim_command('edit ' .. filepath)
 end
 
 return M
