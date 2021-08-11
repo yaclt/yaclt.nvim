@@ -1,4 +1,4 @@
-local utils = require('yaclt.utils')
+local Job = require('plenary.job')
 
 local M = {}
 
@@ -12,16 +12,26 @@ function M.setup(config)
   end
 end
 
-function M.yacltNew(args)
-  local commandString = string.format('%s new --plumbing %s', M.config.cmd, utils.joinArgs(args))
-  print(commandString)
-  local process = io.popen(commandString)
-  local output = process:read('*all')
-  process:close()
-  print(utils.formatOutput(output))
-  -- assert(process.close() == 0) -- assert command executed successfully
-  -- local filepath = stdoutLines[0]
-  -- vim.api.nvim_command('edit ' .. filepath)
+function M.new(args)
+  local allArgs = args
+  table.insert(allArgs, 1, 'new')
+  table.insert(allArgs, '--plumbing')
+  local filepath = ''
+  Job:new({
+    command = M.config.cmd,
+    args = allArgs,
+    cwd = vim.fn.getcwd(),
+    enabled_recording = true,
+    on_stderr = function(_, data)
+      print(data)
+    end,
+    on_stdout = function(_, data)
+      filepath = data
+    end
+  }):sync()
+  if filepath ~= '' then
+    vim.cmd('edit ' .. filepath)
+  end
 end
 
 return M
