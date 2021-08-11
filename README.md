@@ -8,7 +8,7 @@ A Neovim plugin for [Yaclt](https://github.com/mrjones2014/yaclt).
 ### Packer
 
 ```
-use {mrjones2014/yaclt.nvim, requires = 'nvim-lua/plenary.nvim'}
+use {'mrjones2014/yaclt.nvim', requires = 'nvim-lua/plenary.nvim'}
 ```
 
 ### Vim Plug
