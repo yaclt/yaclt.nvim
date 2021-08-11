@@ -1,5 +1,3 @@
-local Job = require('plenary.job')
-
 local M = {}
 
 M.config = {
@@ -13,24 +11,25 @@ function M.setup(config)
 end
 
 function M.new(args)
-  local allArgs = args
-  table.insert(allArgs, 1, 'new')
-  table.insert(allArgs, '--plumbing')
-  local filepath = ''
-  Job:new({
-    command = M.config.cmd,
-    args = allArgs,
-    cwd = vim.fn.getcwd(),
-    enabled_recording = true,
-    on_stderr = function(_, data)
-      print(data)
-    end,
-    on_stdout = function(_, data)
-      filepath = data
-    end
-  }):sync()
-  if filepath ~= '' then
+  local result = require('yaclt.utils').runCommand('new', args)
+  local filepath = result.stdout
+  local error = result.stderr
+  if filepath ~= nil then
     vim.cmd('edit ' .. filepath)
+  end
+end
+
+function M.validate(args)
+  local result = require('yaclt.utils').runCommand('validate', args)
+  local success = result.stdout
+  local error = result.stderr
+
+  if success == 'true' then
+    print('All changelogs formatted properly!')
+  end
+
+  if error ~= nil then
+    print(error)
   end
 end
 
