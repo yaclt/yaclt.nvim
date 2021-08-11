@@ -1,4 +1,5 @@
-# yaclt.nvim - WIP
+# WORK IN PROGRESS
+# yaclt.nvim
 
 A Neovim plugin for [Yaclt](https://github.com/mrjones2014/yaclt).
 
