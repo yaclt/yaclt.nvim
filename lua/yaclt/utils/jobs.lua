@@ -8,6 +8,10 @@ function M.runYaclt(command, args)
   table.insert(allArgs, 1, command)
   table.insert(allArgs, '--plumbing')
 
+  if config.args and #config.args > 0 then
+    allArgs = require('yaclt.utils.tables').mergeTables(config.args, allArgs)
+  end
+
   local stdout = nil
   local stderr = nil
 
