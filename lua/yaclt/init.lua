@@ -5,9 +5,8 @@ M.config = {
 }
 
 function M.setup(config)
-  if config ~= nil and config.cmd ~= nil then
-    M.config.cmd = config.cmd
-  end
+  config = config or {}
+  M.config = require('yaclt.utils').mergeTables(M.config, config)
 end
 
 function M.new(args)

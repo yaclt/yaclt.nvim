@@ -3,6 +3,40 @@ local config = require('yaclt').config
 
 local M = {}
 
+function M.cloneTableByValue(obj, seen)
+  if type(obj) ~= 'table' then
+    return obj
+  end
+
+  if seen and seen[obj] then
+    return seen[obj]
+  end
+
+  local s = seen or {}
+  local res = setmetatable({}, getmetatable(obj))
+  s[obj] = res
+
+  for k, v in pairs(obj)
+    do res[copy(k, s)] = copy(v, s)
+  end
+
+  return res
+end
+
+function M.mergeTables(table1, table2)
+  local resultingTable = M.cloneTableByValue(table1)
+
+  for key, value in pairs(table2) do
+    if (type(value) == 'table') and (type(resultingTable[key] or false) == 'table') then
+      M.mergeTables(resultingTable[key], table2[key])
+    else
+      resultingTable[key] = value
+    end
+  end
+
+  return resultingTable
+end
+
 function M.joinOutput(output)
   if not (type(output) == 'table') then
     return output
