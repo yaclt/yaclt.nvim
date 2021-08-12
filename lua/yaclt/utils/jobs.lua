@@ -4,12 +4,13 @@ local M = {}
 
 function M.runYaclt(command, args)
   local config = require('yaclt.config').config
-  local allArgs = args or {}
+  local tables = require('yaclt.utils.tables')
+  local allArgs = tables.cloneTableByValue(args) or {}
   table.insert(allArgs, 1, command)
   table.insert(allArgs, '--plumbing')
 
   if config.args and #config.args > 0 then
-    allArgs = require('yaclt.utils.tables').mergeTables(config.args, allArgs)
+    allArgs = tables.mergeTables(config.args, allArgs)
   end
 
   local stdout = nil
