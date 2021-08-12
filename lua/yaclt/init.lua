@@ -1,16 +1,13 @@
 local M = {}
 
-M.config = {
-  cmd = 'yaclt',
-}
-
 function M.setup(config)
   config = config or {}
-  M.config = require('yaclt.utils').mergeTables(M.config, config)
+  local configModule = require('yaclt.config')
+  configModule.config = require('yaclt.utils').mergeTables(configModule.config, config)
 end
 
 function M.new(args)
-  local result = require('yaclt.utils').runCommand('new', args)
+  local result = require('yaclt.utils.jobs').runCommand('new', args)
   local filepath = result.stdout
   local error = result.stderr
   if filepath ~= nil then
@@ -19,7 +16,7 @@ function M.new(args)
 end
 
 function M.validate(args)
-  local result = require('yaclt.utils').runCommand('validate', args)
+  local result = require('yaclt.utils.jobs').runCommand('validate', args)
   local success = result.stdout
   local error = result.stderr
 
