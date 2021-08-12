@@ -1,6 +1,6 @@
 local M = {}
 
-function M.joinOutput(output)
+function M.joinListToString(output)
   if not (type(output) == 'table') then
     return output
   end
@@ -10,6 +10,14 @@ function M.joinOutput(output)
     str = str .. val .. '\n'
   end
   return str
+end
+
+function M.splitLines(str)
+  local lines = {}
+  for s in str:gmatch('[^\r\n]+') do
+    table.insert(lines, s)
+  end
+  return lines
 end
 
 function M.trimTrailingNewlines(str)

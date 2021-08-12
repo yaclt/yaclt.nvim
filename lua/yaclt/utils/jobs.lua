@@ -2,7 +2,7 @@ local Job = require('plenary.job')
 
 local M = {}
 
-function M.runCommand(command, args)
+function M.runYaclt(command, args)
   local config = require('yaclt.config').config
   local allArgs = args or {}
   table.insert(allArgs, 1, command)
@@ -31,8 +31,8 @@ function M.runCommand(command, args)
   local strings = require('yaclt.utils.strings')
 
   return {
-    stdout = strings.trimTrailingNewlines(strings.joinOutput(stdout)),
-    stderr = strings.trimTrailingNewlines(strings.joinOutput(stderr)),
+    stdout = strings.trimTrailingNewlines(strings.joinListToString(stdout)),
+    stderr = strings.trimTrailingNewlines(strings.joinListToString(stderr)),
   }
 end
 
