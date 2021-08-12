@@ -16,8 +16,8 @@ function M.cloneTableByValue(obj, seen)
   local res = setmetatable({}, getmetatable(obj))
   s[obj] = res
 
-  for k, v in pairs(obj)
-    do res[copy(k, s)] = copy(v, s)
+  for k, v in pairs(obj) do
+    res[copy(k, s)] = copy(v, s)
   end
 
   return res
@@ -54,7 +54,9 @@ function M.trimTrailingNewlines(str)
     return nil
   end
   local n = #str
-  while n > 0 and str:find("^%s", n) do n = n - 1 end
+  while n > 0 and str:find('^%s', n) do
+    n = n - 1
+  end
   return str:sub(1, n)
 end
 
@@ -66,24 +68,26 @@ function M.runCommand(command, args)
   local stdout = nil
   local stderr = nil
 
-  Job:new({
-    command = config.cmd,
-    args = allArgs,
-    cwd = vim.fn.getcwd(),
-    enabled_recording = true,
-    on_stderr = function(_, data)
-      stderr = stderr or {}
-      table.insert(stderr, data)
-    end,
-    on_stdout = function(_, data)
-      stdout = stdout or {}
-      table.insert(stdout, data)
-    end
-  }):sync()
+  Job
+    :new({
+      command = config.cmd,
+      args = allArgs,
+      cwd = vim.fn.getcwd(),
+      enabled_recording = true,
+      on_stderr = function(_, data)
+        stderr = stderr or {}
+        table.insert(stderr, data)
+      end,
+      on_stdout = function(_, data)
+        stdout = stdout or {}
+        table.insert(stdout, data)
+      end,
+    })
+    :sync()
 
   return {
     stdout = M.trimTrailingNewlines(M.joinOutput(stdout)),
-    stderr = M.trimTrailingNewlines(M.joinOutput(stderr))
+    stderr = M.trimTrailingNewlines(M.joinOutput(stderr)),
   }
 end
 
