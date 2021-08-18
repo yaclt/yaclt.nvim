@@ -3,15 +3,16 @@ local M = {}
 function M.setup(config)
   config = config or {}
   local configModule = require('yaclt.config')
-  local tableUtils = require('yaclt.utils.tables')
-  configModule.config = tableUtils.mergeTables(configModule.config, config)
+  configModule.config = require('yaclt.utils').mergeTables(configModule.config, config)
 end
 
 function M.new(args)
   local result = require('yaclt.utils.jobs').runYaclt('new', args)
   local filepath = result.stdout
   local error = result.stderr
-  if filepath ~= nil then vim.cmd('edit ' .. filepath) end
+  if filepath ~= nil then
+    vim.cmd('edit ' .. filepath)
+  end
 end
 
 function M.validate(args)
@@ -19,9 +20,13 @@ function M.validate(args)
   local success = result.stdout
   local error = result.stderr
 
-  if success == 'true' then print('All changelogs formatted properly!') end
+  if success == 'true' then
+    print('All changelogs formatted properly!')
+  end
 
-  if error ~= nil then print(error) end
+  if error ~= nil then
+    print(error)
+  end
 end
 
 function M.prepareRelease(args)
@@ -35,7 +40,9 @@ function M.prepareRelease(args)
     vim.cmd('edit ' .. changelogFilepath)
   end
 
-  if error ~= nil then print(error) end
+  if error ~= nil then
+    print(error)
+  end
 end
 
 return M
