@@ -20,7 +20,7 @@ Plug 'mrjones2014/yaclt.nvim'
 ## Configuration
 
 Configure the plugin by using the setup function. Not required if you want to use a globally installed
-`yaclt`.
+`yaclt` without default arguments.
 
 Defaults:
 
