@@ -13,6 +13,10 @@ function M.new(args)
   if filepath ~= nil then
     vim.cmd('edit ' .. filepath)
   end
+
+  if error ~= nil then
+    print(error)
+  end
 end
 
 function M.validate(args)
