@@ -20,7 +20,7 @@ Plug 'mrjones2014/yaclt.nvim'
 ## Configuration
 
 Configure the plugin by using the setup function. Not required if you want to use a globally installed
-`yaclt`.
+`yaclt` without default arguments and don't want to set the Nvim commands up.
 
 Defaults:
 
@@ -35,10 +35,25 @@ require('yaclt').setup({
 
 For `yaclt` command arguments and documentation, see [Yaclt docs](https://github.com/mrjones2014/yaclt/blob/master/COMMANDS.md).
 
+### Lua
+
 ```lua
 require('yaclt').new(args) -- e.g. require('yaclt').new({ '--changeType', 'NEW', '-m', 'Message here' })
 
 require('yaclt').validate(args)
 
 require('yaclt').prepareRelease(args) -- e.g. require('yaclt').prepareRelease({ '--releaseNumber', '0.5.0' })
+```
+
+### Nvim Commands
+
+```VimL
+" runs :lua require('yaclt').new()
+:YacltNew
+
+" runs :lua require("yaclt").validate()
+:YacltValidate
+
+" runs :lua require("yaclt").prepareRelease()
+:YacltPrepareRelease
 ```

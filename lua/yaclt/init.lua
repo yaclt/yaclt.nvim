@@ -4,6 +4,7 @@ function M.setup(config)
   config = config or {}
   local configModule = require('yaclt.config')
   configModule.config = require('yaclt.utils').mergeTables(configModule.config, config)
+  require('yaclt.utils.commands').createCommands()
 end
 
 function M.new(args)
