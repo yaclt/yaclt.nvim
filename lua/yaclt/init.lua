@@ -18,7 +18,7 @@ local function removeEditArg(args)
   end
 
   if indexOfEdit == -1 then
-    return
+    return args
   end
 
   table.remove(args, indexOfEdit)
