@@ -20,7 +20,7 @@ Plug 'mrjones2014/yaclt.nvim'
 ## Configuration
 
 Configure the plugin by using the setup function. Not required if you want to use a globally installed
-`yaclt` without default arguments and don't want to set the Nvim commands up.
+`yaclt` without default arguments.
 
 Defaults:
 
@@ -45,15 +45,14 @@ require('yaclt').validate(args)
 require('yaclt').prepareRelease(args) -- e.g. require('yaclt').prepareRelease({ '--releaseNumber', '0.5.0' })
 ```
 
-### Nvim Commands
+### Nvim Command
+
+There is a single editor command, `Yaclt`, that has the same interface as the CLI. For example:
 
 ```VimL
-" runs :lua require('yaclt').new()
-:YacltNew
+:Yaclt new --changeType NEW -m "Description of some new change"
 
-" runs :lua require("yaclt").validate()
-:YacltValidate
+:Yaclt validate
 
-" runs :lua require("yaclt").prepareRelease()
-:YacltPrepareRelease
+:Yaclt prepare-release --releaseNumber 1.2.3
 ```
