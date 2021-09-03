@@ -26,6 +26,7 @@ local function removeEditArg(args)
   if table[indexOfEdit] == 'true' then
     table.remove(args, indexOfEdit)
   end
+  return args
 end
 
 function M.new(args)
