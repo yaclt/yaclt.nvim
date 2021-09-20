@@ -33,7 +33,7 @@ require('yaclt').setup({
 
 ## API
 
-For `yaclt` command arguments and documentation, see [Yaclt docs](https://github.com/mrjones2014/yaclt).
+For `yaclt` command arguments and documentation, see [Yaclt docs](https://github.com/mrjones2014/yaclt/blob/master/docs/COMMANDS.md).
 
 ### Lua
 
