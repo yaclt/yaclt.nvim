@@ -11,7 +11,7 @@ function M.cloneTableByValue(obj, seen)
 
   local localSeen = seen or {}
   local resultingTable = setmetatable({}, getmetatable(obj))
-  localSeen[obj] = result
+  localSeen[obj] = resultingTable
 
   for key, value in pairs(obj) do
     resultingTable[M.cloneTableByValue(key, localSeen)] = M.cloneTableByValue(value, localSeen)
