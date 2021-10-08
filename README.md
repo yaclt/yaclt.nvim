@@ -1,20 +1,20 @@
 # yaclt.nvim
 
-A Neovim plugin for [Yaclt](https://github.com/mrjones2014/yaclt).
+A Neovim plugin for [Yaclt](https://github.com/yaclt/yaclt).
 
 ## Installation
 
 ### Packer
 
 ```lua
-use {'mrjones2014/yaclt.nvim', requires = 'nvim-lua/plenary.nvim'}
+use {'yaclt/yaclt.nvim', requires = 'nvim-lua/plenary.nvim'}
 ```
 
 ### Vim Plug
 
 ```VimL
 Plug 'nvim-lua/plenary.nvim'
-Plug 'mrjones2014/yaclt.nvim'
+Plug 'yaclt/yaclt.nvim'
 ```
 
 ## Configuration
@@ -33,7 +33,7 @@ require('yaclt').setup({
 
 ## API
 
-For `yaclt` command arguments and documentation, see [Yaclt docs](https://github.com/mrjones2014/yaclt/blob/master/docs/COMMANDS.md).
+For `yaclt` command arguments and documentation, see [Yaclt docs](https://github.com/yaclt/yaclt/blob/master/docs/COMMANDS.md).
 
 ### Lua
 
